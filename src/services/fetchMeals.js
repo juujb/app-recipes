@@ -1,4 +1,3 @@
-
 const CATEGORIES = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
 const AREAS = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list';
 const INGREDIENTS = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';

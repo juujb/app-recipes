@@ -1,5 +1,3 @@
-
-
 const CATEGORIES = 'www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
 const GLASSES = 'www.thecocktaildb.com/api/json/v1/1/list.php?g=list';
 const INGREDIENTS = 'www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
