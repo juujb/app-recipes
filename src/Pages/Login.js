@@ -20,6 +20,11 @@ export default function Login() {
     }
   };
 
+  const handleSubmit = () => {
+    localStorage.setItem('mealsToken', 1);
+    localStorage.setItem('cocktailsToken', 1);
+  };
+
   const handleValidation = (em, senha) => {
     const regexEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
     const regexPassord = /^[a-zA-Z0-9 ]{7,20}$/;
@@ -55,6 +60,7 @@ export default function Login() {
           data-testid="login-submit-btn"
           type="button"
           disabled={ !isValid }
+          onClick={ handleSubmit }
         >
           Entrar
         </button>
