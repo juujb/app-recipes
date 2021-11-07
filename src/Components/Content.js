@@ -1,6 +1,19 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
+import Login from '../Pages/Login';
+import Recipes from '../Pages/Recipes';
+import Drinks from '../Pages/Drinks';
+import Explore from '../Pages/Explore';
+import ExploreRecipes from '../Pages/ExploreRecipes';
+import ExploreDrinks from '../Pages/ExploreDrinks';
+import ExploreRecipesI from '../Pages/ExploreRecipesI';
+import ExploreDrinksI from '../Pages/ExploreDrinksI';
+import ExploreRecipesArea from '../Pages/ExploreRecipesArea';
+import Profile from '../Pages/Profile';
+import MadeRecipes from '../Pages/MadeRecipes';
+import FavoriteRecipes from '../Pages/FavoriteRecipes';
+
 const Content = () => (
   <BrowserRouter>
     <Switch>
