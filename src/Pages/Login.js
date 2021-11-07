@@ -8,7 +8,7 @@ const LOGIN_STATE = {
 export default function Login() {
   const [loginInfo, setInfos] = useState(LOGIN_STATE);
 
-  const { email } = loginInfo;
+  const { email, password } = loginInfo;
 
   const handleLoginInfos = ({ target: { name, value } }) => {
     setInfos({
@@ -19,6 +19,14 @@ export default function Login() {
       localStorage.setItem(name, value);
     }
   };
+
+  const handleValidation = (em, senha) => {
+    const regexEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    const regexPassord = /^[a-zA-Z0-9 ]{7,20}$/;
+    return regexEmail.test(String(em)) && regexPassord.test(String(senha));
+  };
+
+  const isValid = handleValidation(email, password);
 
   return (
     <div>
@@ -46,6 +54,7 @@ export default function Login() {
         <button
           data-testid="login-submit-btn"
           type="button"
+          disabled={ !isValid }
         >
           Entrar
         </button>
