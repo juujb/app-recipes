@@ -1,28 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
+import AppContext from '../context/AppContext';
 
-const LOGIN_STATE = {
-  email: '',
-  password: '',
-};
-
-export default function Login() {
-  const [loginInfo, setInfos] = useState(LOGIN_STATE);
+export default function Login({ history }) {
+  const { loginInfo, handleLoginInfos } = useContext(AppContext);
 
   const { email, password } = loginInfo;
-
-  const handleLoginInfos = ({ target: { name, value } }) => {
-    setInfos({
-      ...loginInfo,
-      [name]: value,
-    });
-    if (name === 'email') {
-      localStorage.setItem(name, value);
-    }
-  };
 
   const handleSubmit = () => {
     localStorage.setItem('mealsToken', 1);
     localStorage.setItem('cocktailsToken', 1);
+    localStorage.setItem('user', JSON.stringify({ email }));
+    history.push('/comidas');
   };
 
   const handleValidation = (em, senha) => {
@@ -68,3 +57,11 @@ export default function Login() {
     </div>
   );
 }
+
+Login.propTypes = {
+  history: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.func,
+  ]).isRequired,
+};
