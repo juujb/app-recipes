@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import Header from '../Components/Header';
 
 export default function Profile({ history }) {
-  const { email } = JSON.parse(localStorage.getItem('user'));
+  const { email } = localStorage.getItem('user')
+    ? JSON.parse(localStorage.getItem('user')) : 'email não encontrado';
 
   function redirect(route) {
     history.push(route);
