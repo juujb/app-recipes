@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
-import ProfileIcon from '../images/profileIcon.svg';
-import SearchIcon from '../images/searchIcon.svg';
+import { Link } from 'react-router-dom';
+import profileIcon from '../images/profileIcon.svg';
+import searchIcon from '../images/searchIcon.svg';
 
 export default function Header({ title, withSearch = true }) {
-  const [redirect, setRedirect] = useState(false);
   const [showSerch, setSearch] = useState(false);
-
-  const handleProfileRote = () => {
-    setRedirect(true);
-  };
 
   const handleSearch = () => {
     setSearch(!showSerch);
@@ -23,16 +18,21 @@ export default function Header({ title, withSearch = true }) {
   );
 
   const searchBtn = () => (
-    <button type="button" data-testid="search-top-btn" onClick={ handleSearch }>
-      <img src={ SearchIcon } alt="search Icon" />
+    <button
+      type="button"
+      onClick={ handleSearch }
+      data-testid="search-top-btn"
+      src={ searchIcon }
+    >
+      <img src={ searchIcon } alt="Icone de busca" />
     </button>
   );
 
   const header = () => (
     <header>
-      <button type="button" data-testid="profile-top-btn" onClick={ handleProfileRote }>
-        <img src={ ProfileIcon } alt="Profile Icon" />
-      </button>
+      <Link to="/perfil">
+        <img src={ profileIcon } data-testid="profile-top-btn" alt="Icone de perfil" />
+      </Link>
       <h1 data-testid="page-title">{ title }</h1>
       {withSearch
         && searchBtn()}
@@ -43,7 +43,6 @@ export default function Header({ title, withSearch = true }) {
 
   return (
     <>
-      { redirect && <Redirect to="/perfil" />}
       { header() }
     </>
   );
