@@ -1,5 +1,7 @@
+
 import React, { useEffect, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
+import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 import AppContext from '../context/AppContext';
 
@@ -18,6 +20,7 @@ export default function Drinks() {
         && global.alert(alert)}
       {drinks
         && drinks.length === 1 && <Redirect to={ `/bebidas/${drinks[0].idDrink}` } />}
+      <Footer />
     </div>
   );
 }
