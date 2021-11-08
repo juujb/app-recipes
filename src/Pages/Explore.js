@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 
-// Referencia do uso do useHistory no hooks: https://dev.to/ino_gu/utilizando-usehistory-no-react-bgf
+// Referencia do uso do useHistory: https://dev.to/ino_gu/utilizando-usehistory-no-react-bgf
 export default function Explore() {
   const history = useHistory();
 
