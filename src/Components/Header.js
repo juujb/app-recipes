@@ -6,14 +6,28 @@ import SearchIcon from '../images/searchIcon.svg';
 
 export default function Header({ title, withSearch = true }) {
   const [redirect, setRedirect] = useState(false);
-  const searchBtn = () => (
-    <button type="button" data-testid="search-top-btn">
-      <img src={ SearchIcon } alt="search Icon" />
-    </button>
-  );
+  const [showSerch, setSearch] = useState(false);
+
   const handleProfileRote = () => {
     setRedirect(true);
   };
+
+  const handleSearch = () => {
+    setSearch(!showSerch);
+  };
+
+  const searchInput = () => (
+    <label htmlFor="search">
+      <input name="search" data-testid="search-input" type="text" />
+    </label>
+  );
+
+  const searchBtn = () => (
+    <button type="button" data-testid="search-top-btn" onClick={ handleSearch }>
+      <img src={ SearchIcon } alt="search Icon" />
+    </button>
+  );
+
   const header = () => (
     <header>
       <button type="button" data-testid="profile-top-btn" onClick={ handleProfileRote }>
@@ -22,6 +36,8 @@ export default function Header({ title, withSearch = true }) {
       <h1 data-testid="page-title">{ title }</h1>
       {withSearch
         && searchBtn()}
+      {showSerch
+        && searchInput()}
     </header>
   );
 
