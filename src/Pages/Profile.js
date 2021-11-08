@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Header from '../Components/Header';
 
 export default function Profile({ history }) {
@@ -39,3 +40,7 @@ export default function Profile({ history }) {
     </div>
   );
 }
+
+Profile.propTypes = {
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
+};
