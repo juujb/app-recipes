@@ -1,7 +1,7 @@
 import React from 'react';
 import Provider from './context/Provider';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Content from './Components/Content';
+import Content from './Components/Content'
 
 function App() {
   return (
