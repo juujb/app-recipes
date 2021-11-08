@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import AppContext from './AppContext';
+import { fetchRecipesByName,
+  fetchRecipesByFirstLetter, fetchRecipesByIngredient } from '../services/fetchMeals';
 
 const LOGIN_STATE = {
   email: '',
@@ -11,6 +13,12 @@ function Provider({ children }) {
   const [meals, setMeals] = useState([]);
   const [drinks, setDrinks] = useState([]);
   const [loginInfo, setInfos] = useState(LOGIN_STATE);
+  const [query, setQuery] = useState('');
+  const [searchFor, setSearchParam] = useState('');
+
+  const handleQuerySearch = ({ target: { value } }) => {
+    setQuery(value);
+  };
 
   const handleLoginInfos = ({ target: { name, value } }) => {
     setInfos({
@@ -19,13 +27,37 @@ function Provider({ children }) {
     });
   };
 
+  const handleSearchRecipes = async () => {
+    if (searchFor === 'ingredient') {
+      const recipes = await fetchRecipesByIngredient(query);
+      return setMeals(recipes);
+    }
+    if (searchFor === 'name') {
+      const recipes = await fetchRecipesByName(query);
+      return setMeals(recipes);
+    }
+    if (searchFor === 'first-letter' && query.length > 1) {
+      return global.alert('Sua busca deve conter somente 1 (um) caracter');
+    }
+    const recipes = await fetchRecipesByFirstLetter(query);
+    return setMeals(recipes);
+  };
+
+  const handleRadioClick = ({ target: { value } }) => {
+    setSearchParam(value);
+  };
+
   const contextValue = {
     meals,
     setMeals,
     drinks,
+    searchFor,
     setDrinks,
     loginInfo,
     handleLoginInfos,
+    handleRadioClick,
+    handleQuerySearch,
+    handleSearchRecipes,
   };
 
   return (

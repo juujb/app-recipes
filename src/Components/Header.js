@@ -1,20 +1,71 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import AppContext from '../context/AppContext';
 
 export default function Header({ title, withSearch = true }) {
   const [showSerch, setSearch] = useState(false);
+  const { handleRadioClick,
+    handleQuerySearch, handleSearchRecipes } = useContext(AppContext);
 
   const handleSearch = () => {
     setSearch(!showSerch);
   };
 
   const searchInput = () => (
-    <label htmlFor="search">
-      <input name="search" data-testid="search-input" type="text" />
-    </label>
+    <form>
+      <label htmlFor="search">
+        <input
+          name="search"
+          data-testid="search-input"
+          type="text"
+          onChange={ handleQuerySearch }
+        />
+      </label>
+      <label htmlFor="Ingrediente">
+        <input
+          type="radio"
+          id="Ingrediente"
+          name="searchFor"
+          value="ingredient"
+          onClick={ handleRadioClick }
+          data-testid="ingredient-search-radio"
+        />
+        Ingrediente
+      </label>
+      <label htmlFor="Nome">
+        <input
+          type="radio"
+          id="Nome"
+          name="searchFor"
+          value="name"
+          onClick={ handleRadioClick }
+          data-testid="name-search-radio"
+        />
+        Nome
+      </label>
+      <label htmlFor="PrimeiraLetra">
+        <input
+          type="radio"
+          id="PrimeiraLetra"
+          name="searchFor"
+          value="first-letter"
+          onClick={ handleRadioClick }
+          data-testid="first-letter-search-radio"
+        />
+        Primeira Letra
+      </label>
+      <button
+        data-testid="exec-search-btn"
+        onClick={ handleSearchRecipes }
+        type="button"
+      >
+        Buscar
+      </button>
+    </form>
+
   );
 
   const searchBtn = () => (
@@ -56,3 +107,18 @@ Header.propTypes = {
 Header.defaultProps = {
   withSearch: true,
 };
+
+/*
+13 - Implemente os elementos da barra de busca respeitando os atributos descritos no protótipo
+Deve existir os data-testids tanto da barra de busca quanto de todos os radio-buttons.
+
+Observações técnicas
+
+O radio button de busca de ingrediente deve possuir o atributo data-testid="ingredient-search-radio";
+O radio button de busca por nome deve possuir o atributo data-testid="name-search-radio";
+O radio button de busca da primeira letra deve possuir o atributo data-testid="first-letter-search-radio".
+O botão de busca deve possuir o atributo data-testid="exec-search-btn"
+O que será verificado:
+
+- Tem os data-testids tanto da barra de busca quanto de todos os radio-buttons
+*/
