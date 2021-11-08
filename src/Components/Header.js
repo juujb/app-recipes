@@ -107,18 +107,3 @@ Header.propTypes = {
 Header.defaultProps = {
   withSearch: true,
 };
-
-/*
-13 - Implemente os elementos da barra de busca respeitando os atributos descritos no protótipo
-Deve existir os data-testids tanto da barra de busca quanto de todos os radio-buttons.
-
-Observações técnicas
-
-O radio button de busca de ingrediente deve possuir o atributo data-testid="ingredient-search-radio";
-O radio button de busca por nome deve possuir o atributo data-testid="name-search-radio";
-O radio button de busca da primeira letra deve possuir o atributo data-testid="first-letter-search-radio".
-O botão de busca deve possuir o atributo data-testid="exec-search-btn"
-O que será verificado:
-
-- Tem os data-testids tanto da barra de busca quanto de todos os radio-buttons
-*/
