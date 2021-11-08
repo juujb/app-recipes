@@ -1,8 +1,13 @@
 import React from 'react';
 import Header from '../Components/Header';
 
-export default function Profile() {
+export default function Profile({ history }) {
   const { email } = JSON.parse(localStorage.getItem('user'));
+
+  function redirect(route) {
+    history.push(route);
+  }
+
   return (
     <div>
       <Header title="Perfil" withSearch={ false } />
@@ -10,18 +15,24 @@ export default function Profile() {
       <button
         type="button"
         data-testid="profile-done-btn"
+        onClick={ () => redirect('/receitas-feitas') }
       >
         Receitas Feitas
       </button>
       <button
         type="button"
         data-testid="profile-favorite-btn"
+        onClick={ () => redirect('/receitas-favoritas') }
       >
         Receitas Favoritas
       </button>
       <button
         type="button"
         data-testid="profile-logout-btn"
+        onClick={ () => {
+          localStorage.clear();
+          redirect('/');
+        } }
       >
         Sair
       </button>
