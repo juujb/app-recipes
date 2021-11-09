@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import CardRecipes from '../Components/CardRecipes';
+import CardDefault from '../Components/CardDefault';
 import Header from '../Components/Header';
 import AppContext from '../context/AppContext';
 import { fetchMealsAll, fetchCategories, filterCategorie } from '../services/fetchMeals';
@@ -34,7 +34,7 @@ export default function Recipes() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function handleClick(event, categorie) {
+  function handleClick(categorie) {
     if (toggle === categorie) {
       fetch();
     } else {
@@ -47,13 +47,20 @@ export default function Recipes() {
     <div>
       <Header title="Comidas" />
       <div>
-        <button type="button" onClick={ fetch }>All</button>
+        <button
+          type="button"
+          data-testid="All-category-filter"
+          onClick={ fetch }
+        >
+          All
+        </button>
         {
           categories.slice(0, totalCategories).map((categorie) => (
             <button
               type="button"
               key={ categorie.strCategory }
-              onClick={ (event) => handleClick(event, categorie.strCategory) }
+              data-testid={ `${categorie.strCategory}-category-filter` }
+              onClick={ () => handleClick(categorie.strCategory) }
             >
               { categorie.strCategory}
             </button>
@@ -62,11 +69,11 @@ export default function Recipes() {
       </div>
       <div style={ { display: 'flex', flexWrap: 'wrap' } }>
         {
-          meals.slice(0, totalArray).map((meal) => (
+          meals.slice(0, totalArray).map((meal, indice) => (
             <div key={ meal.idMeal }>
               <Link to={ `comidas/${meal.idMeal}` }>
-                <CardRecipes
-                  index={ meal.idMeal }
+                <CardDefault
+                  index={ indice }
                   img={ meal.strMealThumb }
                   name={ meal.strMeal }
                 />

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function CardRecipes(props) {
+function CardDefault(props) {
   const { img, name, index } = props;
   return (
     <div data-testid={ `${index}-recipe-card` } style={ { width: '250px' } }>
@@ -11,10 +11,10 @@ function CardRecipes(props) {
   );
 }
 
-CardRecipes.propTypes = {
+CardDefault.propTypes = {
   img: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   index: PropTypes.string.isRequired,
 };
 
-export default CardRecipes;
+export default CardDefault;
