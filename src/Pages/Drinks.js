@@ -27,7 +27,6 @@ export default function Drinks() {
   async function fetchCategoriesDrinks() {
     const categoriesAll = await fetchDrinkCategories();
     setCategories(categoriesAll);
-    console.log(categories);
   }
 
   async function fetchFilterCategorie(categorie) {

@@ -14,7 +14,7 @@ function CardDefault(props) {
 CardDefault.propTypes = {
   img: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  index: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default CardDefault;
