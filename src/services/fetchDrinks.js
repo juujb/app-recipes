@@ -2,6 +2,7 @@ const CATEGORIES = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list'
 const GLASSES = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?g=list';
 const INGREDIENTS = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
 const DRINKSALL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
+const RANDOM_DRINK = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
 
 export async function fetchDrinkCategories() {
   const request = await fetch(CATEGORIES);
@@ -50,6 +51,12 @@ export async function fetchDrinkByName(name) {
 export async function fetchDrinkByLetter(letter) {
   const BYLETTER = `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`;
   const request = await fetch(BYLETTER);
+  const data = await request.json();
+  return data.drinks;
+}
+
+export async function fetchRandomDrink() {
+  const request = await fetch(RANDOM_DRINK);
   const data = await request.json();
   return data.drinks;
 }
