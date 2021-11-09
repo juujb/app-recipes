@@ -21,7 +21,6 @@ export async function fetchDrinkIngredients() {
   return data.drinks;
 }
 
-
 export async function fetchAllDrinks() {
   const request = await fetch(DRINKSALL);
   const data = await request.json();

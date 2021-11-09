@@ -1,11 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import CardDefault from '../Components/CardDefault';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
-import { Link } from 'react-router-dom';
-import CardDefault from '../Components/CardDefault';
 import AppContext from '../context/AppContext';
 import {
   fetchAllDrinks,
@@ -14,7 +11,13 @@ import {
 } from '../services/fetchDrinks';
 
 export default function Drinks() {
-  const { setPage, drinks, setDrinks } = useContext(AppContext);
+  const {
+    setPage,
+    drinks,
+    setDrinks,
+    fromCategorie,
+    setFromCategorie,
+  } = useContext(AppContext);
   const [categories, setCategories] = useState([]);
   const [toggle, setToggle] = useState('');
   const totalArray = 12;
@@ -50,6 +53,7 @@ export default function Drinks() {
       fetchFilterCategorie(categorie);
       setToggle(categorie);
     }
+    setFromCategorie(!fromCategorie);
   }
 
   return (
@@ -57,7 +61,8 @@ export default function Drinks() {
       <Header title="Bebidas" />
       {!drinks
         && global.alert(alert)}
-      {drinks
+      { !fromCategorie
+        && drinks
         && drinks.length === 1 && <Redirect to={ `/bebidas/${drinks[0].idDrink}` } />}
       <div>
         <button
@@ -81,8 +86,8 @@ export default function Drinks() {
         }
       </div>
       <div style={ { display: 'flex', flexWrap: 'wrap' } }>
-        {
-          drinks.slice(0, totalArray).map((drink, indice) => (
+        { drinks
+          && drinks.slice(0, totalArray).map((drink, indice) => (
             <div key={ drink.idDrink }>
               <Link to={ `bebidas/${drink.idDrink}` }>
                 <CardDefault
@@ -92,8 +97,7 @@ export default function Drinks() {
                 />
               </Link>
             </div>
-          ))
-        }
+          ))}
       </div>
       <Footer />
     </div>

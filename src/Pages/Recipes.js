@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import CardDefault from '../Components/CardDefault';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
@@ -8,7 +7,7 @@ import AppContext from '../context/AppContext';
 import { fetchMealsAll, fetchCategories, filterCategorie } from '../services/fetchMeals';
 
 export default function Recipes() {
-  const { meals, setMeals } = useContext(AppContext);
+  const { meals, setMeals, fromCategorie, setFromCategorie } = useContext(AppContext);
   const [categories, setCategories] = useState([]);
   const [toggle, setToggle] = useState('');
   const totalArray = 12;
@@ -44,6 +43,7 @@ export default function Recipes() {
       fetchFilterCategorie(categorie);
       setToggle(categorie);
     }
+    setFromCategorie(!fromCategorie);
   }
 
   return (
@@ -51,7 +51,9 @@ export default function Recipes() {
       <Header title="Comidas" />
       {!meals
         && global.alert(alert)}
-      {meals && meals.length === 1 && <Redirect to={ `/comidas/${meals[0].idMeal}` } />}
+      { !fromCategorie
+          && meals
+          && meals.length === 1 && <Redirect to={ `/comidas/${meals[0].idMeal}` } />}
       <div>
         <button
           type="button"
@@ -74,8 +76,8 @@ export default function Recipes() {
         }
       </div>
       <div style={ { display: 'flex', flexWrap: 'wrap' } }>
-        {
-          meals.slice(0, totalArray).map((meal, indice) => (
+        { meals
+          && meals.slice(0, totalArray).map((meal, indice) => (
             <div key={ meal.idMeal }>
               <Link to={ `comidas/${meal.idMeal}` }>
                 <CardDefault
@@ -85,8 +87,7 @@ export default function Recipes() {
                 />
               </Link>
             </div>
-          ))
-        }
+          ))}
       </div>
       <Footer />
     </div>
