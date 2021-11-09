@@ -23,7 +23,7 @@ export async function fetchIngredients() {
 
 export async function fetchMealsAll() {
   const request = await fetch(MEALSALL);
-   const data = await request.json();
+  const data = await request.json();
   return data.meals;
 }
 
@@ -33,7 +33,6 @@ export async function fetchRecipesByName(name) {
   const data = await request.json();
   return data.meals;
 }
-
 
 export async function filterCategorie(categorie) {
   const request = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categorie}`);

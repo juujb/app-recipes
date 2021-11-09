@@ -18,6 +18,7 @@ function Provider({ children }) {
   const [query, setQuery] = useState('');
   const [searchFor, setSearchParam] = useState('');
   const [page, setPage] = useState('food');
+  const [fromCategorie, setFromCategorie] = useState(false);
 
   const handleQuerySearch = ({ target: { value } }) => {
     setQuery(value);
@@ -77,6 +78,8 @@ function Provider({ children }) {
     handleQuerySearch,
     handleSearchRecipes,
     setPage,
+    fromCategorie,
+    setFromCategorie,
   };
 
   return (
