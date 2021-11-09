@@ -21,14 +21,36 @@ export async function fetchDrinkIngredients() {
   return data.drinks;
 }
 
+
 export async function fetchAllDrinks() {
   const request = await fetch(DRINKSALL);
   const data = await request.json();
   return data.drinks;
 }
 
+export async function fetchDrinkByIngredients(ingredient) {
+  const BYINGREDIENT = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`;
+  const request = await fetch(BYINGREDIENT);
+  const data = await request.json();
+  return data.drinks;
+}
+
 export async function fetchFilterDrinkCategorie(categorie) {
   const request = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${categorie}`);
+  const data = await request.json();
+  return data.drinks;
+}
+
+export async function fetchDrinkByName(name) {
+  const BYNAME = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`;
+  const request = await fetch(BYNAME);
+  const data = await request.json();
+  return data.drinks;
+}
+
+export async function fetchDrinkByLetter(letter) {
+  const BYLETTER = `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`;
+  const request = await fetch(BYLETTER);
   const data = await request.json();
   return data.drinks;
 }

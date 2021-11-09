@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import CardDefault from '../Components/CardDefault';
+import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 import AppContext from '../context/AppContext';
 import { fetchMealsAll, fetchCategories, filterCategorie } from '../services/fetchMeals';
@@ -11,6 +13,7 @@ export default function Recipes() {
   const [toggle, setToggle] = useState('');
   const totalArray = 12;
   const totalCategories = 5;
+  const alert = 'Sinto muito, não encontramos nenhuma receita para esses filtros.';
 
   async function fetch() {
     const mealsAll = await fetchMealsAll();
@@ -46,6 +49,9 @@ export default function Recipes() {
   return (
     <div>
       <Header title="Comidas" />
+      {!meals
+        && global.alert(alert)}
+      {meals && meals.length === 1 && <Redirect to={ `/comidas/${meals[0].idMeal}` } />}
       <div>
         <button
           type="button"
@@ -82,6 +88,7 @@ export default function Recipes() {
           ))
         }
       </div>
+      <Footer />
     </div>
   );
 }

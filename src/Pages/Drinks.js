@@ -1,9 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import CardDefault from '../Components/CardDefault';
+import Footer from '../Components/Footer';
 import Header from '../Components/Header';
-/* import { Link } from 'react-router-dom';
-import CardDefault from '../Components/CardDefault'; */
+import { Link } from 'react-router-dom';
+import CardDefault from '../Components/CardDefault';
 import AppContext from '../context/AppContext';
 import {
   fetchAllDrinks,
@@ -12,11 +14,12 @@ import {
 } from '../services/fetchDrinks';
 
 export default function Drinks() {
-  const { drinks, setDrinks } = useContext(AppContext);
+  const { setPage, drinks, setDrinks } = useContext(AppContext);
   const [categories, setCategories] = useState([]);
   const [toggle, setToggle] = useState('');
   const totalArray = 12;
   const totalCategories = 5;
+  const alert = 'Sinto muito, não encontramos nenhuma receita para esses filtros.';
 
   async function fetch() {
     const drinksAll = await fetchAllDrinks();
@@ -37,6 +40,7 @@ export default function Drinks() {
   useEffect(() => {
     fetch();
     fetchCategoriesDrinks();
+    setPage('drinks');
   }, []);
 
   function handleClick(categorie) {
@@ -51,6 +55,10 @@ export default function Drinks() {
   return (
     <div>
       <Header title="Bebidas" />
+      {!drinks
+        && global.alert(alert)}
+      {drinks
+        && drinks.length === 1 && <Redirect to={ `/bebidas/${drinks[0].idDrink}` } />}
       <div>
         <button
           type="button"
@@ -87,6 +95,7 @@ export default function Drinks() {
           ))
         }
       </div>
+      <Footer />
     </div>
   );
 }

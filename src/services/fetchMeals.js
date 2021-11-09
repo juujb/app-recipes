@@ -23,12 +23,34 @@ export async function fetchIngredients() {
 
 export async function fetchMealsAll() {
   const request = await fetch(MEALSALL);
+   const data = await request.json();
+  return data.meals;
+}
+
+export async function fetchRecipesByName(name) {
+  const BYNAME = `https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`;
+  const request = await fetch(BYNAME);
   const data = await request.json();
   return data.meals;
 }
 
+
 export async function filterCategorie(categorie) {
   const request = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categorie}`);
+  const data = await request.json();
+  return data.meals;
+}
+
+export async function fetchRecipesByFirstLetter(letter) {
+  const BYFIRSTLETTER = `https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`;
+  const request = await fetch(BYFIRSTLETTER);
+  const data = await request.json();
+  return data.meals;
+}
+
+export async function fetchRecipesByIngredient(ingridient) {
+  const BYINGREDIENT = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingridient}`;
+  const request = await fetch(BYINGREDIENT);
   const data = await request.json();
   return data.meals;
 }
