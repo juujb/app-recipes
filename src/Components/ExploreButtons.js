@@ -5,7 +5,7 @@ import { fetchRandomMeal } from '../services/fetchMeals';
 
 function ExploreButtons() {
   const history = useHistory();
-  const URL = window.location.pathname.replace('/explorar/', '');
+  const URL = window.location.pathname.replace('/explorar/', ''); // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/replace
 
   const [randomMeal, setRandomMeal] = useState([]);
   const [randomDrink, setRandomDrink] = useState([]);
@@ -29,10 +29,10 @@ function ExploreButtons() {
 
   const handleSurpriseMe = () => {
     if (URL === 'comidas') {
-      return history.push(`/${URL}/${randomMeal.idMeal}`);
+      return history.push(`/${URL}/${randomMeal[0].idMeal}`);
     }
     if (URL === 'bebidas') {
-      return history.push(`/${URL}/${randomDrink.idDrink}`);
+      return history.push(`/${URL}/${randomDrink[0].idDrink}`);
     }
   };
 
