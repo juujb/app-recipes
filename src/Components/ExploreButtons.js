@@ -5,7 +5,8 @@ import { fetchRandomMeal } from '../services/fetchMeals';
 
 function ExploreButtons() {
   const history = useHistory();
-  const URL = window.location.pathname.replace('/explorar/', ''); // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/replace
+  const URL = window.location.pathname.replace('/explorar/', '');
+  // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/replace
 
   const [randomMeal, setRandomMeal] = useState([]);
   const [randomDrink, setRandomDrink] = useState([]);
