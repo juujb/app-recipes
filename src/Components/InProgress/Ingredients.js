@@ -9,6 +9,7 @@ export default function Ingredients({ ingredients, medidas }) {
         {ingredients && ingredients
           .map((ingrediente, index) => (
             <li data-testid={ `${index}-ingredient-step` } key={ ingrediente }>
+              <input type="checkbox" />
               {ingrediente}
               <span>
                 {' '}
