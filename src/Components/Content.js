@@ -13,16 +13,18 @@ import ExploreRecipesArea from '../Pages/ExploreRecipesArea';
 import Profile from '../Pages/Profile';
 import MadeRecipes from '../Pages/MadeRecipes';
 import FavoriteRecipes from '../Pages/FavoriteRecipes';
+import DetailsRecipeMeal from '../Pages/DetailsRecipeMeal';
+import DetailsRecipeDrink from '../Pages/DetailsRecipeDrink';
 
 const Content = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={ Login } />
       <Route exact path="/comidas" component={ Recipes } />
-      <Route exact path="/comidas:id-da-receita" component={ Recipes } />
+      <Route exact path="/comidas/:id" component={ DetailsRecipeMeal } />
       <Route path="/comidas:id-da-receita/in-progress" component={ Recipes } />
       <Route exact path="/bebidas" component={ Drinks } />
-      <Route exact path="/bebidas:id-da-receita" component={ Drinks } />
+      <Route exact path="/bebidas/:id" component={ DetailsRecipeDrink } />
       <Route path="/bebidas:id-da-receita/in-progress" component={ Drinks } />
       <Route exact path="/explorar" component={ Explore } />
       <Route exact path="/explorar/comidas" component={ ExploreRecipes } />
