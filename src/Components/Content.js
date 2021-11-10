@@ -15,6 +15,7 @@ import MadeRecipes from '../Pages/MadeRecipes';
 import FavoriteRecipes from '../Pages/FavoriteRecipes';
 import DetailsRecipeMeal from '../Pages/DetailsRecipeMeal';
 import DetailsRecipeDrink from '../Pages/DetailsRecipeDrink';
+import ProgressRecipe from '../Pages/ProgressRecipe';
 
 const Content = () => (
   <BrowserRouter>
@@ -22,10 +23,10 @@ const Content = () => (
       <Route exact path="/" component={ Login } />
       <Route exact path="/comidas" component={ Recipes } />
       <Route exact path="/comidas/:id" component={ DetailsRecipeMeal } />
-      <Route path="/comidas:id-da-receita/in-progress" component={ Recipes } />
+      <Route path="/comidas/:id/in-progress" component={ ProgressRecipe } />
       <Route exact path="/bebidas" component={ Drinks } />
       <Route exact path="/bebidas/:id" component={ DetailsRecipeDrink } />
-      <Route path="/bebidas:id-da-receita/in-progress" component={ Drinks } />
+      <Route path="/bebidas/:id/in-progress" component={ ProgressRecipe } />
       <Route exact path="/explorar" component={ Explore } />
       <Route exact path="/explorar/comidas" component={ ExploreRecipes } />
       <Route exact path="/explorar/bebidas" component={ ExploreDrinks } />
