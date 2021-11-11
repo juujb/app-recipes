@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import shareSVG from '../images/shareIcon.svg';
 
 export default function ButtonShare({ link }) {
   const [alert, setAlert] = useState('');
@@ -16,7 +17,7 @@ export default function ButtonShare({ link }) {
         data-testid="share-btn"
         onClick={ () => handleClick(link) }
       >
-        Compartilhar
+        <img src={ shareSVG } alt="botão de Compartilhar" />
       </button>
     </>
   );

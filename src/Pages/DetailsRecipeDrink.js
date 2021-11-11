@@ -7,13 +7,14 @@ import { fetchRecipesDetails } from '../services/fetchDrinks';
 import { fetchRecommendations } from '../services/fetchMeals';
 import Ingredients from '../Components/Ingredients';
 import ButtonShare from '../Components/ButtonShare';
+import ButtonFavorite from '../Components/ButtonFavorite';
 
 export default function DetailsRecipeDrink({ history, match: { params } }) {
   const [details, setDetails] = useState([]);
   const [recommendations, setRecommendations] = useState([]);
   const [nameButton, setNameButton] = useState('Iniciar receita');
   const [ingredients, setIngredients] = useState([]);
-  const [measure, setMeasure] = useState([]);
+  const [measures, setMeasure] = useState([]);
   const totalArray = 6;
   const progressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
 
@@ -33,8 +34,12 @@ export default function DetailsRecipeDrink({ history, match: { params } }) {
       ingredientsArray.push(recipe[`strIngredient${index}`]);
       measureArray.push(recipe[`strMeasure${index}`]);
     }
-    setIngredients(ingredientsArray);
-    setMeasure(measureArray);
+    setIngredients(ingredientsArray.filter((
+      ingredientFilter,
+    ) => ingredientFilter !== null));
+    setMeasure(measureArray.filter((
+      measureFilter,
+    ) => measureFilter !== null));
   }
 
   function checkNameButton() {
@@ -84,15 +89,17 @@ export default function DetailsRecipeDrink({ history, match: { params } }) {
               width="360"
             />
             <h2 data-testid="recipe-title">{ detail.strDrink }</h2>
-            <ButtonShare link={ `http://localhost:3000/bebidas/${params.id}` } />
-            <button type="button" data-testid="favorite-btn">Favoritar</button>
+            <div style={ { display: 'flex', justifyContent: 'right' } }>
+              <ButtonShare link={ `http://localhost:3000/bebidas/${params.id}` } />
+              <ButtonFavorite type="bebidas" id={ params.id } recipe={ detail } />
+            </div>
             <p>{ detail.strCategory }</p>
             <p data-testid="recipe-category">{ detail.strAlcoholic }</p>
-            <Ingredients detail={ detail } index={ index } />
+            <Ingredients detail={ { ingredients, measures } } />
             <div data-testid="instructions">
               <p>{ detail.strInstructions}</p>
             </div>
-            <div>
+            <div style={ { display: 'flex', justifyContent: 'space-around' } }>
               { recommendations.slice(0, totalArray).map((meal, indice) => (
                 <div key={ meal.idMeal } data-testid={ `${indice}-recomendation-card` }>
                   <Link exact to={ `comidas/${meal.idMeal}` }>

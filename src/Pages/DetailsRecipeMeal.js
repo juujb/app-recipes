@@ -8,16 +8,16 @@ import { fetchRecommendations } from '../services/fetchDrinks';
 import Ingredients from '../Components/Ingredients';
 import ButtonShare from '../Components/ButtonShare';
 import ButtonFavorite from '../Components/ButtonFavorite';
+import EmbedVideo from '../Components/EmbedVideo';
 
 export default function DetailsRecipeMeal({ history, match: { params } }) {
   const [details, setDetails] = useState([]);
   const [recommendations, setRecommendations] = useState([]);
   const [nameButton, setNameButton] = useState('Iniciar receita');
   const [ingredients, setIngredients] = useState([]);
-  const [measure, setMeasure] = useState([]);
+  const [measures, setMeasures] = useState([]);
   const totalArray = 6;
   const progressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
-  // const progressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
 
   if (!progressRecipes) {
     localStorage.setItem('inProgressRecipes', JSON.stringify({
@@ -25,17 +25,6 @@ export default function DetailsRecipeMeal({ history, match: { params } }) {
       meals: {},
     }));
   }
-
-  /* {
-    cocktails: {
-        id-da-bebida: [lista-de-ingredientes-utilizados],
-        ...
-    },
-    meals: {
-        id-da-comida: [lista-de-ingredientes-utilizados],
-        ...
-    }
-  } */
 
   function arrayIngredients(detailsParam) {
     const ingredientsArray = [];
@@ -46,8 +35,12 @@ export default function DetailsRecipeMeal({ history, match: { params } }) {
       ingredientsArray.push(recipe[`strIngredient${index}`]);
       measureArray.push(recipe[`strMeasure${index}`]);
     }
-    setIngredients(ingredientsArray);
-    setMeasure(measureArray);
+    setIngredients(ingredientsArray.filter((
+      ingredientFilter,
+    ) => ingredientFilter !== ''));
+    setMeasures(measureArray.filter((
+      measureFilter,
+    ) => measureFilter !== ' '));
   }
 
   function checkNameButton() {
@@ -97,18 +90,19 @@ export default function DetailsRecipeMeal({ history, match: { params } }) {
               width="360"
             />
             <h2 data-testid="recipe-title">{ detail.strMeal }</h2>
-            <ButtonShare link={ `http://localhost:3000/comidas/${params.id}` } />
-            <ButtonFavorite type="meal" recipe={ detail } />
-            <button type="button" data-testid="favorite-btn">Favoritar</button>
+            <div style={ { display: 'flex', justifyContent: 'right' } }>
+              <ButtonShare link={ `http://localhost:3000/comidas/${params.id}` } />
+              <ButtonFavorite type="comida" id={ params.id } recipe={ detail } />
+            </div>
             <p data-testid="recipe-category">{ detail.strCategory }</p>
-            <Ingredients detail={ detail } />
+            <Ingredients detail={ { ingredients, measures } } />
             <div data-testid="instructions">
               <p>{ detail.strInstructions}</p>
             </div>
             <div data-testid="video">
-              <a href={ detail.strYoutube }>YouTube</a>
+              <EmbedVideo url={ detail.strYoutube } />
             </div>
-            <div>
+            <div style={ { display: 'flex', justifyContent: 'space-around' } }>
               { recommendations.slice(0, totalArray).map((drink, indice) => (
                 <div key={ drink.idDrink } data-testid={ `${indice}-recomendation-card` }>
                   <Link to={ `bebidas/${drink.idDrink}` }>
@@ -137,8 +131,6 @@ export default function DetailsRecipeMeal({ history, match: { params } }) {
 }
 
 DetailsRecipeMeal.propTypes = {
-  match: PropTypes.objectOf({
-    params: PropTypes.object,
-  }).isRequired,
+  match: PropTypes.objectOf(PropTypes.any).isRequired,
   history: PropTypes.objectOf(PropTypes.any).isRequired,
 };
