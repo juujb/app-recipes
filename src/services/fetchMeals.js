@@ -55,6 +55,18 @@ export async function fetchRecipesByIngredient(ingridient) {
   return data.meals;
 }
 
+export async function fetchRecipesDetails(id) {
+  const request = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
+  const data = await request.json();
+  return data.meals;
+}
+
+export async function fetchRecommendations() {
+  const request = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+  const data = await request.json();
+  return data.meals;
+}
+
 export async function fetchRandomMeal() {
   const request = await fetch(RANDOM_MEAL);
   const data = await request.json();

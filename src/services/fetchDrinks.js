@@ -55,6 +55,18 @@ export async function fetchDrinkByLetter(letter) {
   return data.drinks;
 }
 
+export async function fetchRecipesDetails(id) {
+  const request = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
+  const data = await request.json();
+  return data.drinks;
+}
+
+export async function fetchRecommendations() {
+  const request = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+  const data = await request.json();
+  return data.drinks;
+}
+
 export async function fetchRandomDrink() {
   const request = await fetch(RANDOM_DRINK);
   const data = await request.json();
