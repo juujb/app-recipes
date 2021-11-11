@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 import { fetchDrinkByIngredients } from '../services/fetchDrinks';
 
@@ -25,8 +25,6 @@ export default function IngrediensDrinkCards() {
     const drink = await fetchDrinkByIngredients(item);
     setDrinks(drink);
     history.push('/bebidas');
-    console.log(item);
-    console.log(drink);
   }
 
   return (
