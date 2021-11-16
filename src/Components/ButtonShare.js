@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import shareSVG from '../images/shareIcon.svg';
 
-export default function ButtonShare({ link }) {
+export default function ButtonShare({ link, testId }) {
   const [alert, setAlert] = useState('');
 
   function handleClick(url) {
@@ -14,8 +14,9 @@ export default function ButtonShare({ link }) {
       <span>{ alert }</span>
       <button
         type="button"
-        data-testid="share-btn"
+        data-testid={ testId }
         onClick={ () => handleClick(link) }
+        src={ shareSVG }
       >
         <img src={ shareSVG } alt="botão de Compartilhar" />
       </button>
@@ -23,6 +24,11 @@ export default function ButtonShare({ link }) {
   );
 }
 
+ButtonShare.defaultProps = {
+  testId: 'share-btn',
+};
+
 ButtonShare.propTypes = {
   link: PropTypes.string.isRequired,
+  testId: PropTypes.string,
 };

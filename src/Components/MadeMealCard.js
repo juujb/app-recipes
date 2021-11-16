@@ -1,39 +1,37 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import ButtonShare from './ButtonShare';
 
-export default function MadeMealCard({ meal, index, doneDate, history }) {
-  function handleClick() {
-    history.push(`/comidas/${ meal.id }`); 
-  }
-
+export default function MadeMealCard({ meal, index }) {
   return (
     <div>
-      <span
-        data-testid={`${index}-horizontal-top-text`}
-      >
-        { meal.category }
-      </span>
-      <img
-        data-testid={ `${index}-horizontal-image` }
-        onClick={ handleClick() }
-        src={ meal.strMealThumb }
+      <Link to={ `comidas/${meal.id}` }>
+        <img
+          data-testid={ `${index}-horizontal-image` }
+          style={ { width: '150px' } }
+          alt={ meal.name }
+          src={ meal.image }
         />
-      <span
-        data-testid={ `${index}-horizontal-name` }
-        onClick={ handleClick() }
+        <h1 data-testid={ `${index}-horizontal-name` }>{meal.name}</h1>
+      </Link>
+      <h3
+        data-testid={ `${index}-horizontal-top-text` }
       >
-        {meal.strMeal}
-      </span>
+        { `${meal.area} - ${meal.category}`}
+      </h3>
       <span
         data-testid={ `${index}-horizontal-done-date` }
       >
-        { doneDate }
+        {meal.doneDate}
       </span>
-      { tags.slice(0, 1).map((tagName, tagIndex) => (
+      <ButtonShare link={ `http://localhost:3000/comidas/${meal.id}` } testId={ `${index}-horizontal-share-btn` } />
+      {meal.tags.map((tagName) => (
         <span
-          data-testid={ `${tagIndex}-${tagName}-horizontal-tag` }
+          data-testid={ `${index}-${tagName}-horizontal-tag` }
+          key={ tagName }
         >
-          { tagName }
+          {tagName}
         </span>
       ))}
     </div>
@@ -43,5 +41,4 @@ export default function MadeMealCard({ meal, index, doneDate, history }) {
 MadeMealCard.propTypes = {
   meal: PropTypes.objectOf(PropTypes.any).isRequired,
   index: PropTypes.number.isRequired,
-  doneDate: PropTypes.string.isRequired,
 };

@@ -1,41 +1,48 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import Header from '../Components/Header';
+import MadeDrinkCard from '../Components/MadeDrinkCard';
 import MadeMealCard from '../Components/MadeMealCard';
-import AppContext from '../context/AppContext';
 
 export default function MadeRecipes() {
-  const { madeRecipes } = useContext(AppContext);
-  const [filter, setFilter] = useState('');
+  const madeRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+  const [filtered, setFiltered] = useState(madeRecipes);
+
+  const filter = (recipeType) => {
+    const filteredRecipes = madeRecipes.filter(({ type }) => type.includes(recipeType));
+    setFiltered(filteredRecipes);
+  };
+
   return (
     <div>
       <Header title="Receitas Feitas" withSearch={ false } />
       <button
+        type="button"
+        onClick={ () => filter('') }
         data-testid="filter-by-all-btn"
-        onClick={ () => setFilter('') }
       >
         All
       </button>
       <button
+        type="button"
+        onClick={ () => filter('comida') }
         data-testid="filter-by-food-btn"
-        onClick={ () => setFilter('meal') }
       >
         Food
       </button>
       <button
+        type="button"
+        onClick={ () => filter('bebida') }
         data-testid="filter-by-drink-btn"
-        onClick={ () => setFilter('drinks') }
       >
         Drinks
       </button>
-      <span ></span>
-      {madeRecipes.filter((recipe) => recipe.type === filter)
+      {filtered
         .map((recipe, index) => {
-          if (recipe.type === 'meal') {
-            <MadeMealCard meal={ recipe } index={ index } doneDate={'00-00-0000'} />
+          if (recipe.type === 'comida') {
+            return (<MadeMealCard key={ recipe.name } meal={ recipe } index={ index } />);
           }
-          <MadeDrinkCard drink={ drink } index={ index } doneDate={'00-00-0000'} />
-        })
-      }
+          return (<MadeDrinkCard key={ recipe.name } drink={ recipe } index={ index } />);
+        })}
     </div>
   );
 }
