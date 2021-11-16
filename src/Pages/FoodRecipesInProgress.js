@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { fetchRecipesById } from '../services/fetchMeals';
 import Img from '../Components/InProgress/Img';
@@ -8,6 +9,7 @@ import Instructions from '../Components/InProgress/Instructions';
 function FoodRecipesInProgress({ match: { params: { id } } }) {
   const [recipe, setRecipe] = useState();
   const [recipeDone, setFinishRecipe] = useState(true);
+  const [redirect, setRedirect] = useState(false);
 
   const imgSrc = recipe && recipe.strMealThumb;
   const title = recipe && recipe.strMeal;
@@ -22,15 +24,11 @@ function FoodRecipesInProgress({ match: { params: { id } } }) {
   const measurements = recipe && measureKeys
     .map((key) => recipe[key]).filter((value) => value !== ' ' && value !== null);
 
-  useEffect(() => {
-    const fetchRecipe = async () => {
-      const response = await fetchRecipesById(id);
-      setRecipe(response);
-    };
-    fetchRecipe();
-  }, []);
+  const redirectPage = () => {
+    setRedirect(!redirect);
+  };
 
-  return (
+  const page = () => (
     <div>
       <Img
         src={ imgSrc }
@@ -53,11 +51,26 @@ function FoodRecipesInProgress({ match: { params: { id } } }) {
         disabled={ recipeDone }
         data-testid="finish-recipe-btn"
         type="button"
+        onClick={ redirectPage }
       >
         Finalizar Receita
-
       </button>
     </div>
+  );
+
+  useEffect(() => {
+    const fetchRecipe = async () => {
+      const response = await fetchRecipesById(id);
+      setRecipe(response);
+    };
+    fetchRecipe();
+  }, []);
+
+  return (
+    <>
+      { redirect && <Redirect to="/receitas-feitas" />}
+      { !redirect && page() }
+    </>
   );
 }
 
