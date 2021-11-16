@@ -31,7 +31,15 @@ function DrinksRecipesInProgress({ match: { params: { id } } }) {
 
   return (
     <div>
-      <Img src={ imgSrc } title={ title } category={ categorie } />
+      <Img
+        src={ imgSrc }
+        title={ title }
+        category={ categorie }
+        type="bebida"
+        id={ id }
+        recipe={ recipe }
+        link={ `http://localhost:3000/bebidas/${id}` }
+      />
       <Ingredients
         ingredients={ ingredients }
         medidas={ measurements }

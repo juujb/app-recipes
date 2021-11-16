@@ -31,7 +31,7 @@ export default function Recipes() {
   }
 
   useEffect(() => {
-    fetch();
+    if (meals.length === 0) fetch();
     fetchCategoriesMeals();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

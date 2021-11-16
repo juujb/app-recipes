@@ -41,9 +41,10 @@ export default function Drinks() {
   }
 
   useEffect(() => {
-    fetch();
+    if (drinks.length === 0) fetch();
     fetchCategoriesDrinks();
     setPage('drinks');
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleClick(categorie) {

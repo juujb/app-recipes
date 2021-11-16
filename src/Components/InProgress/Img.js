@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import shareIcon from '../../images/shareIcon.svg';
-import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
+import ButtonFavorite from '../ButtonFavorite';
+import ButtonShare from '../ButtonShare';
 
-export default function Img({ src, title, category }) {
+export default function Img({ src, title, category, type, id, recipe, link }) {
   return (
     <>
       <img data-testid="recipe-photo" src={ src } alt={ title } />
@@ -12,12 +12,8 @@ export default function Img({ src, title, category }) {
         <h2 data-testid="recipe-category">{ category }</h2>
       </div>
       <div>
-        <button data-testid="share-btn" type="button">
-          <img src={ shareIcon } alt="Share BTN" />
-        </button>
-        <button data-testid="favorite-btn" type="button">
-          <img src={ whiteHeartIcon } alt="White Heart BTN" />
-        </button>
+        <ButtonShare link={ link } />
+        <ButtonFavorite type={ type } id={ id } recipe={ recipe } />
       </div>
     </>
   );
@@ -27,6 +23,10 @@ Img.propTypes = {
   src: PropTypes.string,
   title: PropTypes.string,
   category: PropTypes.string,
+  type: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  recipe: PropTypes.objectOf(PropTypes.any).isRequired,
+  link: PropTypes.string.isRequired,
 };
 
 Img.defaultProps = {

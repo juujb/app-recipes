@@ -15,6 +15,8 @@ import MadeRecipes from '../Pages/MadeRecipes';
 import FavoriteRecipes from '../Pages/FavoriteRecipes';
 import FoodRecipesInProgress from '../Pages/FoodRecipesInProgress';
 import DrinksRecipesInProgress from '../Pages/DrinksRecipesInProgress';
+import DetailsRecipeMeal from '../Pages/DetailsRecipeMeal';
+import DetailsRecipeDrink from '../Pages/DetailsRecipeDrink';
 
 const Content = () => (
   <BrowserRouter>
@@ -32,6 +34,9 @@ const Content = () => (
         path="/bebidas/:id/in-progress"
         render={ (props) => <DrinksRecipesInProgress { ...props } /> }
       />
+      <Route exact path="/comidas/:id" component={ DetailsRecipeMeal } />
+      <Route exact path="/bebidas" component={ Drinks } />
+      <Route exact path="/bebidas/:id" component={ DetailsRecipeDrink } />
       <Route exact path="/explorar" component={ Explore } />
       <Route exact path="/explorar/comidas" component={ ExploreRecipes } />
       <Route exact path="/explorar/bebidas" component={ ExploreDrinks } />
