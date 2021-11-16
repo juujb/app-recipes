@@ -13,5 +13,9 @@ export default function Instructions({ instruction }) {
 }
 
 Instructions.propTypes = {
-  instruction: PropTypes.string.isRequired,
+  instruction: PropTypes.string,
+};
+
+Instructions.defaultProps = {
+  instruction: null,
 };

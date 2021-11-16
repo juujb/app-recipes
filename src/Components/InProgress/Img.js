@@ -24,7 +24,13 @@ export default function Img({ src, title, category }) {
 }
 
 Img.propTypes = {
-  src: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
+  src: PropTypes.string,
+  title: PropTypes.string,
+  category: PropTypes.string,
+};
+
+Img.defaultProps = {
+  src: null,
+  title: null,
+  category: null,
 };

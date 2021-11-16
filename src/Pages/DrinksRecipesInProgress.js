@@ -20,7 +20,6 @@ function DrinksRecipesInProgress({ match: { params: { id } } }) {
     .filter((key) => key.includes('strMeasure'));
   const measurements = recipe && measureKeys
     .map((key) => recipe[key]).filter((value) => value !== ' ' && value !== null);
-  console.log(recipe);
 
   useEffect(() => {
     const fetchRecipe = async () => {
@@ -33,7 +32,12 @@ function DrinksRecipesInProgress({ match: { params: { id } } }) {
   return (
     <div>
       <Img src={ imgSrc } title={ title } category={ categorie } />
-      <Ingredients ingredients={ ingredients } medidas={ measurements } />
+      <Ingredients
+        ingredients={ ingredients }
+        medidas={ measurements }
+        type="cocktails"
+        id={ id }
+      />
       <Instructions instruction={ instruction } />
       <button data-testid="finish-recipe-btn" type="button">Finalizar Receita</button>
     </div>
@@ -41,11 +45,7 @@ function DrinksRecipesInProgress({ match: { params: { id } } }) {
 }
 
 DrinksRecipesInProgress.propTypes = {
-  match: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.func,
-  ]).isRequired,
+  match: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default DrinksRecipesInProgress;
