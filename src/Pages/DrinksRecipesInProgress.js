@@ -7,6 +7,7 @@ import Instructions from '../Components/InProgress/Instructions';
 
 function DrinksRecipesInProgress({ match: { params: { id } } }) {
   const [recipe, setRecipe] = useState();
+  const [recipeDone, setFinishRecipe] = useState(true);
 
   const title = recipe && recipe.strDrink;
   const imgSrc = recipe && recipe.strDrinkThumb;
@@ -45,9 +46,18 @@ function DrinksRecipesInProgress({ match: { params: { id } } }) {
         medidas={ measurements }
         type="cocktails"
         id={ id }
+        setFinishRecipe={ setFinishRecipe }
+        recipeDone={ recipeDone }
       />
       <Instructions instruction={ instruction } />
-      <button data-testid="finish-recipe-btn" type="button">Finalizar Receita</button>
+      <button
+        disabled={ recipeDone }
+        data-testid="finish-recipe-btn"
+        type="button"
+      >
+        Finalizar Receita
+
+      </button>
     </div>
   );
 }

@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const ING_LIST_STATE = {
   cocktails: {},
   meals: {},
 };
-export default function Ingredients({ ingredients, medidas, type = 'meals', id }) {
+export default function Ingredients({
+  ingredients, medidas, type = 'meals', id, setFinishRecipe, recipeDone }) {
   const [ingredientList, setIngredienteList] = useState(ING_LIST_STATE);
   const [recipeList, setRecipeItem] = useState([]);
+  const [counter, setCounter] = useState(0);
 
   const newObj = ingredientList;
   const add = (onde, value) => {
@@ -36,10 +38,18 @@ export default function Ingredients({ ingredients, medidas, type = 'meals', id }
   const handleIngredientList = (ev, onde) => {
     const { target: { value } } = ev;
     if (!recipeList.includes(value)) {
+      setCounter(counter + 1);
       return add(onde, value);
     }
+    setCounter(counter - 1);
     return remove(onde, value);
   };
+
+  useEffect(() => {
+    if (ingredients && ingredients.length === counter) {
+      setFinishRecipe(!recipeDone);
+    }
+  }, [counter]);
 
   return (
     <div>
@@ -72,6 +82,8 @@ Ingredients.propTypes = {
   medidas: PropTypes.arrayOf(PropTypes.any),
   type: PropTypes.string,
   id: PropTypes.string,
+  setFinishRecipe: PropTypes.func.isRequired,
+  recipeDone: PropTypes.bool.isRequired,
 };
 
 Ingredients.defaultProps = {
