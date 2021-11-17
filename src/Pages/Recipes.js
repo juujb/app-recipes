@@ -79,7 +79,7 @@ export default function Recipes() {
         { meals
           && meals.slice(0, totalArray).map((meal, indice) => (
             <div key={ meal.idMeal }>
-              <Link to={ `comidas/${meal.idMeal}` }>
+              <Link to={ `/comidas/${meal.idMeal}` }>
                 <CardDefault
                   index={ indice }
                   img={ meal.strMealThumb }

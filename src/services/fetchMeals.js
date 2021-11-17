@@ -79,3 +79,9 @@ export async function fetchRandomMeal() {
   const data = await request.json();
   return data.meals;
 }
+
+export async function fetchRecipesByFirstArea(area) {
+  const request = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`);
+  const data = await request.json();
+  return data.meals;
+}
