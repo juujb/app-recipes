@@ -13,9 +13,10 @@ import ExploreRecipesArea from '../Pages/ExploreRecipesArea';
 import Profile from '../Pages/Profile';
 import MadeRecipes from '../Pages/MadeRecipes';
 import FavoriteRecipes from '../Pages/FavoriteRecipes';
+import FoodRecipesInProgress from '../Pages/FoodRecipesInProgress';
+import DrinksRecipesInProgress from '../Pages/DrinksRecipesInProgress';
 import DetailsRecipeMeal from '../Pages/DetailsRecipeMeal';
 import DetailsRecipeDrink from '../Pages/DetailsRecipeDrink';
-import ProgressRecipe from '../Pages/ProgressRecipe';
 import PageNotFound from './PageNotFound';
 
 const Content = () => (
@@ -23,11 +24,20 @@ const Content = () => (
     <Switch>
       <Route exact path="/" component={ Login } />
       <Route exact path="/comidas" component={ Recipes } />
+      <Route exact path="/comidas:id-da-receita" component={ FoodRecipesInProgress } />
+      <Route
+        path="/comidas/:id/in-progress"
+        render={ (props) => <FoodRecipesInProgress { ...props } /> }
+      />
+      <Route exact path="/bebidas" component={ Drinks } />
+      <Route exact path="/bebidas:id-da-receita" component={ DrinksRecipesInProgress } />
+      <Route
+        path="/bebidas/:id/in-progress"
+        render={ (props) => <DrinksRecipesInProgress { ...props } /> }
+      />
       <Route exact path="/comidas/:id" component={ DetailsRecipeMeal } />
-      <Route path="/comidas/:id/in-progress" component={ ProgressRecipe } />
       <Route exact path="/bebidas" component={ Drinks } />
       <Route exact path="/bebidas/:id" component={ DetailsRecipeDrink } />
-      <Route path="/bebidas/:id/in-progress" component={ ProgressRecipe } />
       <Route exact path="/explorar" component={ Explore } />
       <Route exact path="/explorar/comidas" component={ ExploreRecipes } />
       <Route exact path="/explorar/bebidas" component={ ExploreDrinks } />
