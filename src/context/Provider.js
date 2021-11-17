@@ -14,6 +14,7 @@ const LOGIN_STATE = {
 function Provider({ children }) {
   const [meals, setMeals] = useState([]);
   const [drinks, setDrinks] = useState([]);
+  const [madeRecipes, setMadeRecipes] = useState([]);
   const [loginInfo, setInfos] = useState(LOGIN_STATE);
   const [query, setQuery] = useState('');
   const [searchFor, setSearchParam] = useState('');
@@ -80,6 +81,8 @@ function Provider({ children }) {
     setPage,
     fromCategorie,
     setFromCategorie,
+    madeRecipes,
+    setMadeRecipes,
   };
 
   return (
