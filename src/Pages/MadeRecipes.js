@@ -36,7 +36,7 @@ export default function MadeRecipes() {
       >
         Drinks
       </button>
-      {filtered
+      {filtered && filtered
         .map((recipe, index) => {
           if (recipe.type === 'comida') {
             return (<MadeMealCard key={ recipe.name } meal={ recipe } index={ index } />);
