@@ -16,6 +16,7 @@ import FavoriteRecipes from '../Pages/FavoriteRecipes';
 import DetailsRecipeMeal from '../Pages/DetailsRecipeMeal';
 import DetailsRecipeDrink from '../Pages/DetailsRecipeDrink';
 import ProgressRecipe from '../Pages/ProgressRecipe';
+import PageNotFound from './PageNotFound';
 
 const Content = () => (
   <BrowserRouter>
@@ -36,6 +37,7 @@ const Content = () => (
       <Route path="/perfil" component={ Profile } />
       <Route path="/receitas-feitas" component={ MadeRecipes } />
       <Route path="/receitas-favoritas" component={ FavoriteRecipes } />
+      <Route path="*" component={ PageNotFound } />
     </Switch>
   </BrowserRouter>
 );
