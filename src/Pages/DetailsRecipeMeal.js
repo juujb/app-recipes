@@ -105,7 +105,7 @@ export default function DetailsRecipeMeal({ history, match: { params } }) {
             <div style={ { display: 'flex', justifyContent: 'space-around' } }>
               { recommendations.slice(0, totalArray).map((drink, indice) => (
                 <div key={ drink.idDrink } data-testid={ `${indice}-recomendation-card` }>
-                  <Link to={ `bebidas/${drink.idDrink}` }>
+                  <Link to={ `/bebidas/${drink.idDrink}` }>
                     <CardRecommendation
                       index={ indice }
                       img={ drink.strDrinkThumb }

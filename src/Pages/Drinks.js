@@ -90,7 +90,7 @@ export default function Drinks() {
         { drinks
           && drinks.slice(0, totalArray).map((drink, indice) => (
             <div key={ drink.idDrink }>
-              <Link to={ `bebidas/${drink.idDrink}` }>
+              <Link to={ `/bebidas/${drink.idDrink}` }>
                 <CardDefault
                   index={ indice }
                   img={ drink.strDrinkThumb }
