@@ -1,0 +1,10 @@
+.container-recipes {
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}

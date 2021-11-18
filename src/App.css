@@ -11,8 +11,11 @@
 } */
 
 .meals {
+  display: flex;
+  flex-wrap: wrap;
   background-image: url('./images/background.jpg');
   background-size: cover;
+  text-decoration: none;
 }
 
 .rocksGlass {
