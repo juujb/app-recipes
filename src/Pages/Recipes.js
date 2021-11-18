@@ -57,8 +57,8 @@ export default function Recipes() {
       { !fromCategorie
           && meals
           && meals.length === 1 && <Redirect to={ `/comidas/${meals[0].idMeal}` } />}
-      <div className="d-flex justify-content-center">
-        <ButtonGroup aria-label="Basic example">
+      <div id="buttonGroup">
+        <ButtonGroup size="sm" aria-label="Basic example">
           <Button
             variant="primary"
             type="button"

@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import AppContext from '../context/AppContext';
+import '../styles/Header.css';
+import { Button, Form } from 'react-bootstrap';
 
 export default function Header({ title, withSearch = true }) {
   const [showSerch, setSearch] = useState(false);
@@ -15,56 +17,59 @@ export default function Header({ title, withSearch = true }) {
   };
 
   const searchInput = () => (
-    <form>
-      <label htmlFor="search">
-        <input
+    <Form className="searchForm">
+      <Form.Group className="mb-3" controlId="search">
+        <Form.Control
           name="search"
           data-testid="search-input"
           type="text"
           onChange={ handleQuerySearch }
+          placeholder="Pesquisar"
         />
-      </label>
-      <label htmlFor="Ingrediente">
-        <input
-          type="radio"
-          id="Ingrediente"
-          name="searchFor"
-          value="ingredient"
-          onClick={ handleRadioClick }
-          data-testid="ingredient-search-radio"
-        />
-        Ingrediente
-      </label>
-      <label htmlFor="Nome">
-        <input
-          type="radio"
-          id="Nome"
-          name="searchFor"
-          value="name"
-          onClick={ handleRadioClick }
-          data-testid="name-search-radio"
-        />
-        Nome
-      </label>
-      <label htmlFor="PrimeiraLetra">
-        <input
-          type="radio"
-          id="PrimeiraLetra"
-          name="searchFor"
-          value="first-letter"
-          onClick={ handleRadioClick }
-          data-testid="first-letter-search-radio"
-        />
-        Primeira Letra
-      </label>
-      <button
+      </Form.Group>
+      <Form.Check
+        inline
+        type="radio"
+        id="Ingrediente"
+        name="searchFor"
+        value="ingredient"
+        onClick={ handleRadioClick }
+        data-testid="ingredient-search-radio"
+        className="mb-3"
+        label="Ingrediente"
+      />
+
+      <Form.Check
+        inline
+        type="radio"
+        id="Nome"
+        name="searchFor"
+        value="name"
+        onClick={ handleRadioClick }
+        data-testid="name-search-radio"
+        label="Nome"
+      />
+
+      <Form.Check
+        inline
+        type="radio"
+        id="PrimeiraLetra"
+        name="searchFor"
+        value="first-letter"
+        onClick={ handleRadioClick }
+        data-testid="first-letter-search-radio"
+        label="Primeira Letra"
+      />
+
+      <Button
+        variant="primary"
         data-testid="exec-search-btn"
         onClick={ handleSearchRecipes }
         type="button"
       >
         Buscar
-      </button>
-    </form>
+      </Button>
+    </Form>
 
   );
 
@@ -80,7 +85,7 @@ export default function Header({ title, withSearch = true }) {
   );
 
   const header = () => (
-    <header>
+    <header className="header">
       <Link to="/perfil">
         <img src={ profileIcon } data-testid="profile-top-btn" alt="Icone de perfil" />
       </Link>
