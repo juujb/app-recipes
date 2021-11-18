@@ -75,7 +75,7 @@ export default function Recipes() {
           ))
         }
       </div>
-      <div style={ { display: 'flex', flexWrap: 'wrap' } }>
+      <div>
         { meals
           && meals.slice(0, totalArray).map((meal, indice) => (
             <div key={ meal.idMeal }>

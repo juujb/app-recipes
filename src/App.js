@@ -8,9 +8,7 @@ function App() {
   return (
     <Provider>
       <div className="meals">
-        <div className="app">
-          <Content />
-        </div>
+        <Content />
       </div>
     </Provider>
   );

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Form, Image } from 'react-bootstrap';
 import AppContext from '../context/AppContext';
 import logo from '../images/logo.png';
+import '../styles/Login.css';
 
 export default function Login({ history }) {
   const { loginInfo, handleLoginInfos } = useContext(AppContext);
@@ -25,8 +26,8 @@ export default function Login({ history }) {
   const isValid = handleValidation(email, password);
 
   return (
-    <div className="d-flex flex-column bd-highlight mb-3">
-      <Image src={ logo } width="120" alt="Logo" className="rounded mx-auto d-block" />
+    <div className="login d-flex flex-column bd-highlight mb-3">
+      <Image src={ logo } width="250" alt="Logo" className="rounded mx-auto d-block" />
       <div className="d-flex flex-column bd-highlight mb-3">
         <Form>
           <Form.Group className="mb-3" controlId="email">
