@@ -16,3 +16,8 @@
   padding: 15px;
   border-radius: 5%;
 }
+
+.login .btn {
+  background-color: #690e0e;
+  border: black;
+}

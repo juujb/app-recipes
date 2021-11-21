@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { Button, Form } from 'react-bootstrap';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import AppContext from '../context/AppContext';
 import '../styles/Header.css';
-import { Button, Form } from 'react-bootstrap';
 
 export default function Header({ title, withSearch = true }) {
   const [showSerch, setSearch] = useState(false);
@@ -62,7 +62,7 @@ export default function Header({ title, withSearch = true }) {
       />
 
       <Button
-        variant="primary"
+        variant="outline-danger"
         data-testid="exec-search-btn"
         onClick={ handleSearchRecipes }
         type="button"
@@ -78,18 +78,24 @@ export default function Header({ title, withSearch = true }) {
       type="button"
       onClick={ handleSearch }
       data-testid="search-top-btn"
+      className="button-search"
       src={ searchIcon }
     >
-      <img src={ searchIcon } alt="Icone de busca" />
+      <img src={ searchIcon } alt="Icone de busca" className="icone-search" />
     </button>
   );
 
   const header = () => (
     <header className="header">
       <Link to="/perfil">
-        <img src={ profileIcon } data-testid="profile-top-btn" alt="Icone de perfil" />
+        <img
+          src={ profileIcon }
+          data-testid="profile-top-btn"
+          className="logo-perfil"
+          alt="Icone de perfil"
+        />
       </Link>
-      <h1 data-testid="page-title">{ title }</h1>
+      <h1 data-testid="page-title" className="page-title">{ title }</h1>
       {withSearch
         && searchBtn()}
       {showSerch
