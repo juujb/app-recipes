@@ -1,0 +1,25 @@
+.container-made-recipes {
+  width: 100%;
+  height: 100%;
+  padding-top: 65px;
+  padding-bottom: 60px;
+}
+
+.main-made-recipes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-made-recipes .btn {
+  background-color: #690e0e;
+  border: black;
+  margin-bottom: 10px;
+}
+
+.card-made-recipes {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}

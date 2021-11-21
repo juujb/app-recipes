@@ -1,45 +1,51 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import ButtonShare from './ButtonShare';
 
 export default function MadeDrinkCard({ drink, index }) {
   return (
-    <div>
+    <Card style={ { width: '9rem' } }>
       <Link to={ `bebidas/${drink.id}` }>
-        <img
-          style={ { width: '150px' } }
+        <Card.Img
           data-testid={ `${index}-horizontal-image` }
           alt={ drink.name }
           src={ drink.image }
         />
-        <h1 data-testid={ `${index}-horizontal-name` }>{drink.name}</h1>
       </Link>
-      <h3
-        data-testid={ `${index}-horizontal-top-text` }
-      >
-        { `${drink.area} - ${drink.category}`}
-      </h3>
-      <span
-        data-testid={ `${index}-horizontal-top-text` }
-      >
-        {drink.alcoholicOrNot}
-      </span>
-      <span
-        data-testid={ `${index}-horizontal-done-date` }
-      >
-        {drink.doneDate}
-      </span>
-      <ButtonShare link={ `http://localhost:3000/bebidas/${drink.id}` } testId={ `${index}-horizontal-share-btn` } />
-      {drink.tags.map((tagName) => (
+      <Card.Body>
+        <Card.Title data-testid={ `${index}-horizontal-name` }>
+          {drink.name}
+          <ButtonShare link={ `http://localhost:3000/bebidas/${drink.id}` } testId={ `${index}-horizontal-share-btn` } />
+        </Card.Title>
+        <Card.Text>
+          <p data-testid={ `${index}-horizontal-top-text` }>
+            { `${drink.area} - ${drink.category}`}
+          </p>
+          <span
+            data-testid={ `${index}-horizontal-top-text` }
+          >
+            {drink.alcoholicOrNot}
+          </span>
+          {drink.tags.map((tagName) => (
+            <span
+              data-testid={ `${index}-${tagName}-horizontal-tag` }
+              key={ tagName }
+            >
+              {tagName}
+            </span>
+          ))}
+        </Card.Text>
+      </Card.Body>
+      <Card.Footer>
         <span
-          data-testid={ `${index}-${tagName}-horizontal-tag` }
-          key={ tagName }
+          data-testid={ `${index}-horizontal-done-date` }
         >
-          {tagName}
+          {drink.doneDate}
         </span>
-      ))}
-    </div>
+      </Card.Footer>
+    </Card>
   );
 }
 
