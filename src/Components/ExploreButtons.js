@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import { fetchRandomDrink } from '../services/fetchDrinks';
 import { fetchRandomMeal } from '../services/fetchMeals';
 
@@ -39,58 +40,65 @@ function ExploreButtons() {
 
   if (URL === 'bebidas') {
     return (
-      <div>
-        <button
-          type="button"
-          name="ingredientes"
-          onClick={ handleClick }
-          data-testid="explore-by-ingredient"
-        >
-          Por Ingredientes
-        </button>
-
-        <button
-          type="button"
-          name="surprise"
-          onClick={ handleSurpriseMe }
-          data-testid="explore-surprise"
-        >
-          Me Surpreenda!
-        </button>
-      </div>
+      <>
+        <div>
+          <Button
+            type="button"
+            name="ingredientes"
+            onClick={ handleClick }
+            data-testid="explore-by-ingredient"
+          >
+            Por Ingredientes
+          </Button>
+        </div>
+        <div>
+          <Button
+            type="button"
+            name="surprise"
+            onClick={ handleSurpriseMe }
+            data-testid="explore-surprise"
+          >
+            Me Surpreenda!
+          </Button>
+        </div>
+      </>
     );
   }
 
   if (URL === 'comidas') {
     return (
-      <div>
-        <button
-          type="button"
-          name="ingredientes"
-          onClick={ handleClick }
-          data-testid="explore-by-ingredient"
-        >
-          Por Ingredientes
-        </button>
-
-        <button
-          type="button"
-          name="area"
-          onClick={ handleClick }
-          data-testid="explore-by-area"
-        >
-          Por Local de Origem
-        </button>
-
-        <button
-          type="button"
-          name="surprise"
-          onClick={ handleSurpriseMe }
-          data-testid="explore-surprise"
-        >
-          Me Surpreenda!
-        </button>
-      </div>
+      <>
+        <div>
+          <Button
+            type="button"
+            name="ingredientes"
+            onClick={ handleClick }
+            data-testid="explore-by-ingredient"
+          >
+            Por Ingredientes
+          </Button>
+        </div>
+        <div>
+          <Button
+            type="button"
+            name="area"
+            onClick={ handleClick }
+            data-testid="explore-by-area"
+          >
+            Por Local de Origem
+          </Button>
+        </div>
+        <div>
+          <Button
+            type="button"
+            name="surprise"
+            onClick={ handleSurpriseMe }
+            data-testid="explore-surprise"
+          >
+            Me Surpreenda!
+          </Button>
+        </div>
+      </>
     );
   }
 }

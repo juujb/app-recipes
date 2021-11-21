@@ -15,10 +15,14 @@ function CardDefault(props) {
         >
           { name }
         </Card.Title>
-        <Card.Text>
-          <p>{ `Categoria: ${category}` }</p>
-          <p>{ `Região: ${area}` }</p>
-        </Card.Text>
+        { category && (
+          <Card.Text>
+            <p>{ `Categoria: ${category}` }</p>
+            { area && (
+              <p>{ `Região: ${area}` }</p>
+            )}
+          </Card.Text>
+        )}
       </Card.Body>
       {/* <ListGroup className="list-group-flush">
         <ListGroupItem>{ `Categoria: ${category}` }</ListGroupItem>
