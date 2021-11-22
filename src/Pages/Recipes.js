@@ -1,10 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Redirect, Link } from 'react-router-dom';
+import { Button, ButtonGroup } from 'react-bootstrap';
 import CardDefault from '../Components/CardDefault';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 import AppContext from '../context/AppContext';
 import { fetchMealsAll, fetchCategories, filterCategorie } from '../services/fetchMeals';
+import '../styles/CardDefault.css';
+import '../styles/PageRecipes.css';
 
 export default function Recipes() {
   const { meals, setMeals, fromCategorie, setFromCategorie } = useContext(AppContext);
@@ -47,43 +50,50 @@ export default function Recipes() {
   }
 
   return (
-    <div>
+    <div className="container-recipes">
       <Header title="Comidas" />
       {!meals
         && global.alert(alert)}
       { !fromCategorie
           && meals
           && meals.length === 1 && <Redirect to={ `/comidas/${meals[0].idMeal}` } />}
-      <div>
-        <button
-          type="button"
-          data-testid="All-category-filter"
-          onClick={ fetch }
-        >
-          All
-        </button>
-        {
-          categories.slice(0, totalCategories).map((categorie) => (
-            <button
-              type="button"
-              key={ categorie.strCategory }
-              data-testid={ `${categorie.strCategory}-category-filter` }
-              onClick={ () => handleClick(categorie.strCategory) }
-            >
-              { categorie.strCategory}
-            </button>
-          ))
-        }
+      <div className="buttonGroup">
+        <ButtonGroup size="sm" aria-label="Basic example">
+          <Button
+            variant="primary"
+            type="button"
+            data-testid="All-category-filter"
+            onClick={ fetch }
+          >
+            All
+          </Button>
+          {
+            categories.slice(0, totalCategories).map((categorie) => (
+              <Button
+                variant="primary"
+                type="button"
+                key={ categorie.strCategory }
+                data-testid={ `${categorie.strCategory}-category-filter` }
+                onClick={ () => handleClick(categorie.strCategory) }
+              >
+                { categorie.strCategory}
+              </Button>
+            ))
+          }
+        </ButtonGroup>
       </div>
-      <div style={ { display: 'flex', flexWrap: 'wrap' } }>
+      <div className="cards">
         { meals
           && meals.slice(0, totalArray).map((meal, indice) => (
-            <div key={ meal.idMeal }>
+            <div key={ meal.idMeal } className="container-card">
               <Link to={ `/comidas/${meal.idMeal}` }>
                 <CardDefault
                   index={ indice }
                   img={ meal.strMealThumb }
                   name={ meal.strMeal }
+                  id={ meal.idMeal }
+                  category={ meal.strCategory }
+                  area={ meal.strArea }
                 />
               </Link>
             </div>

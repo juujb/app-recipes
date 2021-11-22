@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Redirect, Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import CardDefault from '../Components/CardDefault';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
@@ -9,6 +10,7 @@ import {
   fetchDrinkCategories,
   fetchFilterDrinkCategorie,
 } from '../services/fetchDrinks';
+import '../styles/PageDrinks.css';
 
 export default function Drinks() {
   const {
@@ -58,7 +60,7 @@ export default function Drinks() {
   }
 
   return (
-    <div>
+    <div className="container-drinks">
       <Header title="Bebidas" />
       {!drinks
         && global.alert(alert)}
@@ -66,35 +68,40 @@ export default function Drinks() {
         && drinks
         && drinks.length === 1 && <Redirect to={ `/bebidas/${drinks[0].idDrink}` } />}
       <div>
-        <button
-          type="button"
-          data-testid="All-category-filter"
-          onClick={ fetch }
-        >
-          All
-        </button>
-        {
-          categories.slice(0, totalCategories).map((categorie) => (
-            <button
-              type="button"
-              key={ categorie.strCategory }
-              data-testid={ `${categorie.strCategory}-category-filter` }
-              onClick={ () => handleClick(categorie.strCategory) }
-            >
-              { categorie.strCategory }
-            </button>
-          ))
-        }
+        <div className="buttonGroup">
+          <Button
+            variant="primary"
+            type="button"
+            data-testid="All-category-filter"
+            onClick={ fetch }
+          >
+            All
+          </Button>
+          {
+            categories.slice(0, totalCategories).map((categorie) => (
+              <Button
+                variant="primary"
+                type="button"
+                key={ categorie.strCategory }
+                data-testid={ `${categorie.strCategory}-category-filter` }
+                onClick={ () => handleClick(categorie.strCategory) }
+              >
+                { categorie.strCategory }
+              </Button>
+            ))
+          }
+        </div>
       </div>
-      <div style={ { display: 'flex', flexWrap: 'wrap' } }>
+      <div className="cards">
         { drinks
           && drinks.slice(0, totalArray).map((drink, indice) => (
-            <div key={ drink.idDrink }>
+            <div key={ drink.idDrink } className="container-card">
               <Link to={ `/bebidas/${drink.idDrink}` }>
                 <CardDefault
                   index={ indice }
                   img={ drink.strDrinkThumb }
                   name={ drink.strDrink }
+                  category={ drink.strCategory }
                 />
               </Link>
             </div>

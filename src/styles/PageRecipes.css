@@ -1,0 +1,15 @@
+.container-recipes {
+  height: 100%;
+  width: 100%;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.buttonGroup {
+  margin: 65px 0 0 12px;
+  min-width: 360px;
+}
+

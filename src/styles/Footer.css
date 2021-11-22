@@ -1,7 +1,25 @@
 .footer {
+  background-color: rgb(70, 6, 6);
   bottom: 0;
   display: flex;
   justify-content: space-between;
+  left: 0;
+  min-width: 360px;
+  padding: 5px;
   position: fixed;
-  width: 100%;
+  z-index: 10;
+}
+
+.icone-drinks {
+  margin-left: 5px;
+  width: 45px;
+}
+
+.icone-explorar {
+  width: 45px;
+}
+
+.icone-meal {
+  margin-right: 5px;
+  width: 45px;
 }

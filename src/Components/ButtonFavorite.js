@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import whiteHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
+import '../styles/ButtonFavorite.css';
 
 export default function ButtonFavorite({ type, id, recipe }) {
   const [favorite, setFavorite] = useState(false);
@@ -74,6 +75,7 @@ export default function ButtonFavorite({ type, id, recipe }) {
     <button
       type="button"
       data-testid="favorite-btn"
+      className="button-favorite"
       src={ favorite ? blackHeart : whiteHeart }
       onClick={ handleClick }
     >

@@ -18,11 +18,18 @@ import DrinksRecipesInProgress from '../Pages/DrinksRecipesInProgress';
 import DetailsRecipeMeal from '../Pages/DetailsRecipeMeal';
 import DetailsRecipeDrink from '../Pages/DetailsRecipeDrink';
 import PageNotFound from './PageNotFound';
+import '../styles/Login.css';
 
 const Content = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={ Login } />
+      <Route
+        exact
+        path="/"
+        render={ (props) => (
+          <div className="container-login"><Login { ...props } /></div>
+        ) }
+      />
       <Route exact path="/comidas" component={ Recipes } />
       <Route exact path="/comidas:id-da-receita" component={ FoodRecipesInProgress } />
       <Route

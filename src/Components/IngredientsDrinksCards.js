@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Card } from 'react-bootstrap';
 import AppContext from '../context/AppContext';
 import { fetchDrinkByIngredients } from '../services/fetchDrinks';
+import '../styles/PageExplore.css';
 
 const API_URL = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
 const IMAGE_URL = 'https://www.thecocktaildb.com/images/ingredients/';
@@ -28,26 +30,33 @@ export default function IngrediensDrinkCards() {
   }
 
   return (
-    <div>
-      {drinkItems.map(({ strIngredient1 }, index) => (
-        <button
-          type="button"
-          key={ index }
-          data-testid={ `${index}-ingredient-card` }
-          onClick={ () => handleClick(strIngredient1) }
-        >
-          <img
-            src={ `${IMAGE_URL}${strIngredient1}-Small.png` }
-            alt={ `${strIngredient1}` }
-            data-testid={ `${index}-card-img` }
-          />
-          <p
-            key={ index }
-            data-testid={ `${index}-card-name` }
-          >
-            {strIngredient1}
-          </p>
-        </button>)).splice(0, MAX_LENGTH)}
+    <div className="container-explore">
+      <div className="cards">
+        {drinkItems.map(({ strIngredient1 }, index) => (
+          <div key={ index } className="container-card">
+            <Card
+              style={ { width: '9rem' } }
+              data-testid={ `${index}-ingredient-card` }
+              onClick={ () => handleClick(strIngredient1) }
+            >
+              <Card.Img
+                variant="top"
+                src={ `${IMAGE_URL}${strIngredient1}-Small.png` }
+                alt={ `${strIngredient1}` }
+                data-testid={ `${index}-card-img` }
+              />
+              <Card.Body>
+                <Card.Title
+                  data-testid={ `${index}-card-name` }
+                  className="card-title"
+                >
+                  {strIngredient1}
+                </Card.Title>
+              </Card.Body>
+            </Card>
+          </div>
+        )).splice(0, MAX_LENGTH)}
+      </div>
     </div>
   );
 }

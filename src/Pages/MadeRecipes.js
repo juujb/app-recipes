@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { Button } from 'react-bootstrap';
 import Header from '../Components/Header';
 import MadeDrinkCard from '../Components/MadeDrinkCard';
 import MadeMealCard from '../Components/MadeMealCard';
+import '../styles/PageMadeRecipes.css';
 
 export default function MadeRecipes() {
   const madeRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
@@ -13,36 +15,53 @@ export default function MadeRecipes() {
   };
 
   return (
-    <div>
+    <div className="container-made-recipes">
       <Header title="Receitas Feitas" withSearch={ false } />
-      <button
-        type="button"
-        onClick={ () => filter('') }
-        data-testid="filter-by-all-btn"
-      >
-        All
-      </button>
-      <button
-        type="button"
-        onClick={ () => filter('comida') }
-        data-testid="filter-by-food-btn"
-      >
-        Food
-      </button>
-      <button
-        type="button"
-        onClick={ () => filter('bebida') }
-        data-testid="filter-by-drink-btn"
-      >
-        Drinks
-      </button>
-      {filtered && filtered
-        .map((recipe, index) => {
-          if (recipe.type === 'comida') {
-            return (<MadeMealCard key={ recipe.name } meal={ recipe } index={ index } />);
-          }
-          return (<MadeDrinkCard key={ recipe.name } drink={ recipe } index={ index } />);
-        })}
+      <div className="main-made-recipes">
+        <div>
+          <Button
+            variant="primary"
+            type="button"
+            onClick={ () => filter('') }
+            data-testid="filter-by-all-btn"
+          >
+            All
+          </Button>
+          <Button
+            variant="primary"
+            type="button"
+            onClick={ () => filter('comida') }
+            data-testid="filter-by-food-btn"
+          >
+            Food
+          </Button>
+          <Button
+            variant="primary"
+            type="button"
+            onClick={ () => filter('bebida') }
+            data-testid="filter-by-drink-btn"
+          >
+            Drinks
+          </Button>
+        </div>
+        <div className="card-made-recipes">
+          {filtered && filtered
+            .map((recipe, index) => {
+              if (recipe.type === 'comida') {
+                return (
+                  <div key={ recipe.name } className="container-card">
+                    <MadeMealCard meal={ recipe } index={ index } />
+                  </div>
+                );
+              }
+              return (
+                <div key={ recipe.name } className="container-card">
+                  <MadeDrinkCard drink={ recipe } index={ index } />
+                </div>
+              );
+            })}
+        </div>
+      </div>
     </div>
   );
 }
