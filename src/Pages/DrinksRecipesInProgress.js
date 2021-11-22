@@ -25,6 +25,26 @@ function DrinksRecipesInProgress({ match: { params: { id } } }) {
     .map((key) => recipe[key]).filter((value) => value !== ' ' && value !== null);
 
   const redirectPage = () => {
+    const tags = recipe.strTags ? recipe.strTags : [''];
+    const madeRecipe = {
+      id: recipe.idDrink,
+      type: 'bebida',
+      area: recipe.strArea,
+      category: recipe.strCategory,
+      alcoholicOrNot: recipe.strAlcoholic,
+      name: recipe.strDrink,
+      image: recipe.strDrinkThumb,
+      doneDate: new Date(),
+      tags: [...tags],
+    };
+    console.log(recipe);
+    const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+    if (doneRecipes) {
+      localStorage.setItem('doneRecipes', JSON.stringify([...doneRecipes, madeRecipe]));
+    } else {
+      localStorage.setItem('doneRecipes', JSON.stringify([madeRecipe]));
+    }
+
     setRedirect(!redirect);
   };
 
