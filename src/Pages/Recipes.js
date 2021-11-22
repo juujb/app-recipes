@@ -57,7 +57,7 @@ export default function Recipes() {
       { !fromCategorie
           && meals
           && meals.length === 1 && <Redirect to={ `/comidas/${meals[0].idMeal}` } />}
-      <div id="buttonGroup">
+      <div className="buttonGroup">
         <ButtonGroup size="sm" aria-label="Basic example">
           <Button
             variant="primary"

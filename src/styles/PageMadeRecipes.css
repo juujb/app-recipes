@@ -1,15 +1,15 @@
 .container-made-recipes {
-  width: 100%;
   height: 100%;
-  padding-top: 65px;
   padding-bottom: 60px;
+  padding-top: 65px;
+  width: 100%;
 }
 
 .main-made-recipes {
+  align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 }
 
 .main-made-recipes .btn {
@@ -19,7 +19,7 @@
 }
 
 .card-made-recipes {
-  width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  width: 100%;
 }

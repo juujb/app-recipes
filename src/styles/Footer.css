@@ -1,13 +1,13 @@
 .footer {
+  background-color: rgb(70, 6, 6);
   bottom: 0;
   display: flex;
   justify-content: space-between;
-  position: fixed;
+  left: 0;
   min-width: 360px;
   padding: 5px;
+  position: fixed;
   z-index: 10;
-  background-color: rgb(70, 6, 6);
-  left: 0;
 }
 
 .icone-drinks {
@@ -20,6 +20,6 @@
 }
 
 .icone-meal {
-  width: 45px;
   margin-right: 5px;
+  width: 45px;
 }

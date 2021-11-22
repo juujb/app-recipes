@@ -1,21 +1,21 @@
 .container-profile {
-  width: 100%;
   height: 100vh;
-  padding-top: 125px;
   padding-bottom: 60px;
+  padding-top: 125px;
+  width: 100%;
 }
 
 .main-profile {
+  align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 }
 
 .main-profile .btn {
-  margin-top: 25px;
   background-color: #690e0e;
   border: black;
+  margin-top: 25px;
 }
 
 .email-profile {
@@ -24,14 +24,14 @@
 }
 
 .image-profile {
-  width: 100px;
   background-color: whitesmoke;
   border-radius: 50%;
   margin-bottom: 15px;
+  width: 100px;
 }
 
 .btn-logout {
+  background-color: rgb(6, 49, 167);
+  margin-top: 135px;
   width: 100px;
-  background-color: rgb(6, 49, 167) !important;
-  margin-top: 135px !important;
 }

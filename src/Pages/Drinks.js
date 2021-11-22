@@ -68,7 +68,7 @@ export default function Drinks() {
         && drinks
         && drinks.length === 1 && <Redirect to={ `/bebidas/${drinks[0].idDrink}` } />}
       <div>
-        <div id="buttonGroup">
+        <div className="buttonGroup">
           <Button
             variant="primary"
             type="button"
