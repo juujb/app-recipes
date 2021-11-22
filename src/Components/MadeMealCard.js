@@ -3,6 +3,7 @@ import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ButtonShare from './ButtonShare';
+import tagImg from '../images/tag.png';
 
 export default function MadeMealCard({ meal, index }) {
   return (
@@ -24,6 +25,7 @@ export default function MadeMealCard({ meal, index }) {
           <p data-testid={ `${index}-horizontal-top-text` }>
             { `${meal.area} - ${meal.category}`}
           </p>
+          <img src={ tagImg } alt="Tag" className="icone-tag" />
           {meal.tags.map((tagName) => (
             <span
               data-testid={ `${index}-${tagName}-horizontal-tag` }
