@@ -9,6 +9,7 @@ import {
 } from '../services/fetchMeals';
 import CardDefault from '../Components/CardDefault';
 import AppContext from '../context/AppContext';
+import '../styles/PageExplore.css';
 
 export default function ExploreRecipesArea() {
   const { meals, setMeals } = useContext(AppContext);
@@ -50,7 +51,7 @@ export default function ExploreRecipesArea() {
   }, [value]);
 
   return (
-    <div>
+    <div className="container-explore">
       <Header title="Explorar Origem" />
       <div>
         <select
@@ -69,10 +70,10 @@ export default function ExploreRecipesArea() {
           ))}
         </select>
       </div>
-      <div style={ { display: 'flex', flexWrap: 'wrap' } }>
+      <div className="cards">
         { meals
           && meals.slice(0, totalArray).map((meal, indice) => (
-            <div key={ meal.idMeal }>
+            <div key={ meal.idMeal } className="container-card">
               <Link to={ `/comidas/${meal.idMeal}` }>
                 <CardDefault
                   index={ indice }

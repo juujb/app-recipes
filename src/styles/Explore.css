@@ -1,0 +1,17 @@
+.container-exploretype {
+  height: 100vh;
+  width: 100%;
+}
+
+.main-explore {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 65px;
+}
+
+.main-explore .btn {
+  background-color: #690e0e;
+  border: black;
+  margin-top: 30px;
+}

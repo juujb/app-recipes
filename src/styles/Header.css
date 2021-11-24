@@ -1,0 +1,57 @@
+.header {
+  align-items: center;
+  background-color: rgb(70, 6, 6);
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  left: 0;
+  padding: 5px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.searchForm {
+  background-color: rgb(70, 6, 6);
+  color: white;
+  left: 0;
+  padding: 5px;
+  position: fixed;
+  top: 65px;
+  width: 100%;
+}
+
+.button-search {
+  background: none;
+  border: none;
+}
+
+.button-search:before {
+  border: none;
+}
+
+
+.icone-search {
+  width: 45px;
+}
+
+.logo-perfil {
+  width: 60px;
+}
+
+.page-title {
+  color: white;
+  font-family: Dancing Script , cursive;
+}
+
+@media screen and ( min-width : 1050px ) {
+
+  .header {
+    left: 35%;
+  }
+
+  .searchForm {
+    padding-left: 29%;
+  }
+}

@@ -1,40 +1,49 @@
 import React from 'react';
+import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ButtonShare from './ButtonShare';
+import tagImg from '../images/tag.png';
 
 export default function MadeMealCard({ meal, index }) {
   return (
-    <div>
+    <Card style={ { width: '9rem' } }>
       <Link to={ `comidas/${meal.id}` }>
-        <img
+        <Card.Img
+          variant="top"
           data-testid={ `${index}-horizontal-image` }
-          style={ { width: '150px' } }
           alt={ meal.name }
           src={ meal.image }
         />
-        <h1 data-testid={ `${index}-horizontal-name` }>{meal.name}</h1>
       </Link>
-      <h3
-        data-testid={ `${index}-horizontal-top-text` }
-      >
-        { `${meal.area} - ${meal.category}`}
-      </h3>
-      <span
-        data-testid={ `${index}-horizontal-done-date` }
-      >
-        {meal.doneDate}
-      </span>
-      <ButtonShare link={ `http://localhost:3000/comidas/${meal.id}` } testId={ `${index}-horizontal-share-btn` } />
-      {meal.tags.map((tagName) => (
+      <Card.Body>
+        <Card.Title data-testid={ `${index}-horizontal-name` }>
+          {meal.name}
+          <ButtonShare link={ `http://localhost:3000/comidas/${meal.id}` } testId={ `${index}-horizontal-share-btn` } />
+        </Card.Title>
+        <Card.Text>
+          <p data-testid={ `${index}-horizontal-top-text` }>
+            { `${meal.area} - ${meal.category}`}
+          </p>
+          <img src={ tagImg } alt="Tag" className="icone-tag" />
+          {meal.tags.map((tagName) => (
+            <span
+              data-testid={ `${index}-${tagName}-horizontal-tag` }
+              key={ tagName }
+            >
+              {tagName}
+            </span>
+          ))}
+        </Card.Text>
+      </Card.Body>
+      <Card.Footer>
         <span
-          data-testid={ `${index}-${tagName}-horizontal-tag` }
-          key={ tagName }
+          data-testid={ `${index}-horizontal-done-date` }
         >
-          {tagName}
+          {meal.doneDate}
         </span>
-      ))}
-    </div>
+      </Card.Footer>
+    </Card>
   );
 }
 
