@@ -19,8 +19,8 @@ export default function MadeMealCard({ meal, index }) {
       <Card.Body>
         <Card.Title data-testid={ `${index}-horizontal-name` }>
           {meal.name}
-          <ButtonShare link={ `http://localhost:3000/comidas/${meal.id}` } testId={ `${index}-horizontal-share-btn` } />
         </Card.Title>
+        <ButtonShare link={ `http://localhost:3000/comidas/${meal.id}` } testId={ `${index}-horizontal-share-btn` } />
         <Card.Text>
           <p data-testid={ `${index}-horizontal-top-text` }>
             { `${meal.area} - ${meal.category}`}
