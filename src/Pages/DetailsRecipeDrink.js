@@ -117,7 +117,12 @@ export default function DetailsRecipeDrink({ history, match: { params } }) {
             <button
               type="button"
               data-testid="start-recipe-btn"
-              style={ { position: 'fixed ', bottom: '0', left: '40%' } }
+              style={ {
+                position: 'fixed',
+                bottom: '0',
+                left: '50%',
+                transform: 'translate(-50%, 0)',
+              } }
               onClick={ handleClick }
             >
               { nameButton }

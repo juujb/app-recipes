@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function CardRecommendation(props) {
   const { img, name, index, display } = props;
   return (
-    <div style={ { width: '200px', display } }>
+    <div style={ { width: '180px', display } }>
       <img src={ img } alt={ name } width="100" />
       <p
         data-testid={ `${index}-recomendation-title` }

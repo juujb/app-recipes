@@ -6,7 +6,7 @@ import ButtonShare from '../ButtonShare';
 export default function Img({ src, title, category, type, id, recipe, link }) {
   return (
     <>
-      <img width="300px" data-testid="recipe-photo" src={ src } alt={ title } />
+      <img width="360px" data-testid="recipe-photo" src={ src } alt={ title } />
       <div>
         <h1 data-testid="recipe-title">{ title }</h1>
         <h2 data-testid="recipe-category">{ category }</h2>
