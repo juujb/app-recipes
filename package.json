@@ -10,6 +10,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "clipboard-copy": "^3.1.0",
+    "gh-pages": "^3.2.3",
     "history": "^4.7.2",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
@@ -30,7 +31,9 @@
     "test-coverage": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js,.jsx",
-    "lint:styles": "npx stylelint '**/*.css'"
+    "lint:styles": "npx stylelint '**/*.css'",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -62,6 +65,7 @@
     "stylelint": "^13.8.0",
     "stylelint-order": "^4.1.0"
   },
+  "homepage": "https://username.github.io/app-toot-name",
   "jest": {
     "coveragePathIgnorePatterns": [
       "index.js",
