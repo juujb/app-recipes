@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 
 import Login from '../Pages/Login';
 import Recipes from '../Pages/Recipes';
@@ -21,7 +21,7 @@ import PageNotFound from './PageNotFound';
 import '../styles/Login.css';
 
 const Content = () => (
-  <BrowserRouter>
+  <HashRouter basename="/">
     <Switch>
       <Route
         exact
@@ -56,7 +56,7 @@ const Content = () => (
       <Route path="/receitas-favoritas" component={ FavoriteRecipes } />
       <Route path="*" component={ PageNotFound } />
     </Switch>
-  </BrowserRouter>
+  </HashRouter>
 );
 
 export default Content;
