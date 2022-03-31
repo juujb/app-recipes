@@ -14,6 +14,12 @@ Um app criado com [React.js](https://pt-br.reactjs.org/) e [Redux](https://redux
 
 ## Uso
 
+### Utilize através do site
+
+* ```juujb.github.io/app-recipes/```
+
+### Caso queira rodar localmente o projeto
+
 Inicie o projeto.
 ```bash
 npm start
