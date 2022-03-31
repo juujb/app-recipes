@@ -18,7 +18,8 @@ Um app criado com [React.js](https://pt-br.reactjs.org/) e [Redux](https://redux
 
 * ```juujb.github.io/app-recipes/```
 
-### Ou Caso queira rodar localmente o projeto
+
+### Ou caso queira rodar localmente o projeto
 
 Inicie o projeto.
 ```bash
@@ -29,4 +30,6 @@ Acesse o site pelo seu navegador atráves do seguinte link:
 
 ## Nota
 
-O site foi pensando para utilização em um celular, por isso deve ser utilizado no mesmo ou com navegador emulado para resolução de um.
+* O site foi pensando para utilização em um celular, por isso deve ser utilizado no mesmo ou com navegador emulado para resolução de um.
+
+* É necessário fazer login com um e-mail e senha fictícios que respeitem o formato especificado.
